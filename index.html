@@ -870,14 +870,15 @@
 
         /* 沉浸式大图布局 - 用于剧情梗概图和精彩片段图 */
         .landing-page-item.immersive-layout {
-            padding: 0;
+            padding: 120px 0 0; /* 保持顶部padding为tab栏留空间 */
             position: relative;
         }
 
         .landing-page-item.immersive-layout .landing-header-image {
             filter: none; /* 不模糊，保持图片清晰 */
             opacity: 1;
-            height: 100%; /* 占满整个高度 */
+            height: calc(100% + 120px); /* 高度补偿padding，让图片填满整个容器 */
+            top: -120px; /* 向上偏移，从屏幕顶部开始显示 */
             background-position: center 50%; /* 显示图片正中部区域 */
         }
 
@@ -885,10 +886,11 @@
         .landing-page-item.immersive-layout .immersive-gradient-mask {
             content: '';
             position: absolute;
-            top: 0;
+            top: -120px; /* 向上偏移，从屏幕顶部开始 */
             left: 0;
             right: 0;
             bottom: 0;
+            height: calc(100% + 120px); /* 高度补偿padding */
             z-index: 0;
             pointer-events: none;
         }
@@ -901,7 +903,7 @@
             flex-direction: column;
             justify-content: flex-start; /* 改为从顶部开始布局 */
             height: 100%;
-            padding-top: 50%; /* 从屏幕50%的位置开始显示内容 */
+            padding-top: calc(50% - 120px); /* 从屏幕50%的位置开始显示内容，减去顶部padding */
             padding-bottom: 180px; /* 为底部播放器留空间 */
         }
 
